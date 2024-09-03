@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro - JnCodes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .forum-card {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .forum-card h3 {
+            color: #f8b400;
+        }
+        .btn-custom {
+            background-color: #f8b400;
+            border: none;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #ffc107;
+        }
+        .profile-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        .question-author {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .question-author p {
+            margin: 0;
+        }
+        .navbar {
+            background-color: #333;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .nav-link {
+            margin-left: 1rem;
+        }
+        .nav-link:hover {
+            color: #f8b400 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">JnCodes</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="contacto.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="nosotro.html">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="foro.html">foro</a>
+                    </li>
+                </ul>
+            </div>
+    </nav>
+
+    <!-- Foro -->
+    <div class="container">
+        <h2 class="text-center mb-4">Foro de Preguntas</h2>
+        
+        <!-- Listado de Preguntas -->
+        <div id="questionsList">
+            <!-- Preguntas se llenarán aquí -->
+            <div class="forum-card">
+                <div class="question-author">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4XN4BepxQPTd2q9Eu13P1gDzoE60oA6Yoqg&s" alt="Perfil" class="profile-img">
+                    <p><strong>Usuario123</strong></p>
+                </div>
+                <h3>¿Cómo puedo comprar una clave de Windows 10?</h3>
+                <p>Respuesta: Puedes comprar una clave de Windows 10 en nuestra sección de productos.</p>
+            </div>
+            <div class="forum-card">
+                <div class="question-author">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4XN4BepxQPTd2q9Eu13P1gDzoE60oA6Yoqg&s" alt="Perfil" class="profile-img">
+                    <p><strong>Usuario456</strong></p>
+                </div>
+                <h3>¿Qué métodos de pago aceptan?</h3>
+                <p>Respuesta: Aceptamos pagos con tarjeta de crédito y débito.</p>
+            </div>
+        </div>
+
+        <!-- Formulario para Enviar Pregunta -->
+        <div class="forum-card">
+            <h3>Enviar una nueva pregunta</h3>
+            <form id="questionForm">
+                <div class="mb-3">
+                    <label for="questionTitle" class="form-label">Título de la Pregunta</label>
+                    <input type="text" class="form-control" id="questionTitle" placeholder="Ingrese el título de su pregunta">
+                </div>
+                <div class="mb-3">
+                    <label for="questionBody" class="form-label">Detalles de la Pregunta</label>
+                    <textarea class="form-control" id="questionBody" rows="3" placeholder="Ingrese los detalles de su pregunta"></textarea>
+                </div>
+                <button type="submit" class="btn btn-custom">Enviar Pregunta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('questionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = document.getElementById('questionTitle').value;
+            const body = document.getElementById('questionBody').value;
+            
+            // Display the new question in the forum list
+            const newQuestion = `
+                <div class="forum-card">
+                    <div class="question-author">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4XN4BepxQPTd2q9Eu13P1gDzoE60oA6Yoqg&s" alt="Perfil" class="profile-img">
+                        <p><strong>Tú</strong></p>
+                    </div>
+                    <h3>${title}</h3>
+                    <p>${body}</p>
+                </div>
+            `;
+            document.getElementById('questionsList').innerHTML += newQuestion;
+
+            // Clear the form
+            document.getElementById('questionTitle').value = '';
+            document.getElementById('questionBody').value = '';
+
+            alert('Gracias por su pregunta. La hemos recibido y se publicará pronto.');
+        });
+    </script>
+</body>
+</html>
